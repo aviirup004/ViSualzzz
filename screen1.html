@@ -1,0 +1,353 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0dccf2",
+                        "secondary": "#10b981",
+                        "accent": "#f43f5e",
+                        "microtask": "#fbbf24",
+                        "macrotask": "#a855f7",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0F172A",
+                        "editor-bg": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"],
+                        "mono": ["JetBrains Mono"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(13, 204, 242, 0.1);
+        }
+        .glow-primary {
+            box-shadow: 0 0 15px rgba(13, 204, 242, 0.3);
+        }
+        .glow-secondary {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(13, 204, 242, 0.6);
+        }
+        .event-loop-path {
+            border: 2px dashed rgba(13, 204, 242, 0.2);
+            border-radius: 50%;
+        }
+        .timeline-track {
+            background: linear-gradient(90deg, rgba(15,23,42,0) 0%, rgba(30,41,59,0.5) 50%, rgba(15,23,42,0) 100%);
+        }
+        .keyframe-blue { @apply bg-primary glow-primary; }
+        .keyframe-yellow { @apply bg-microtask; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); }
+        .keyframe-purple { @apply bg-macrotask; box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-hidden h-screen">
+<div class="flex flex-col h-full">
+<header class="flex items-center justify-between border-b border-slate-800 px-6 py-3 bg-background-dark/80 backdrop-blur-md z-50">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">terminal</span>
+<h1 class="text-xl font-bold tracking-tight">JS Visualizer <span class="text-slate-400 font-light">: Time-Travel &amp; Sandbox</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-6 ml-4">
+<a class="text-sm font-medium text-primary border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition-colors" href="#">Memory</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition-colors" href="#">Presets</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-slate-800/50 rounded-lg px-3 py-1.5 border border-slate-700">
+<span class="size-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-xs font-mono text-slate-300">v8: Execution Active</span>
+</div>
+<button class="bg-primary text-background-dark px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 hover:brightness-110 transition-all glow-primary">
+<span class="material-symbols-outlined text-sm">save</span>
+                Snapshot
+            </button>
+<div class="size-8 rounded-full bg-slate-700 border border-slate-600 overflow-hidden">
+<img alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBspu5SQwJcZFXQhJo9CPz4W30Xg-PMYh0y6Dr87d3KYSzzRbAAouR1GHrVwUpBBuODOd9GyAjHG6MojrjmwNFHRgw5VN8rDa4vWsFfaXTV-8L4X3INhGMzWXi0OwbB2cWZJZehTVMyI2XfBKPNjITGaxMD0XOygECLlDgwbnvWcowhfcTVIqXmKEqEzgc9Q26p4ST-8gIC6UKvVLRBx82oJFFxEI0sWTQ9hrx2hZM0ZurIb7wrvm9Tl4tJnmB8DwIuEvT7qNcaE-sW"/>
+</div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden p-4 gap-4">
+<div class="w-1/3 flex flex-col gap-4 h-full">
+<div class="glass rounded-xl overflow-hidden flex flex-col flex-1 border border-slate-800 shadow-2xl">
+<div class="flex items-center justify-between px-4 py-2 bg-slate-900/50 border-b border-slate-800">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">javascript</span>
+<span class="text-xs font-mono text-slate-400">main.js</span>
+</div>
+<div class="flex gap-1">
+<div class="size-2.5 rounded-full bg-slate-700"></div>
+<div class="size-2.5 rounded-full bg-slate-700"></div>
+<div class="size-2.5 rounded-full bg-slate-700"></div>
+</div>
+</div>
+<div class="flex-1 overflow-auto font-mono text-sm p-4 bg-editor-bg/30">
+<div class="flex gap-4">
+<div class="text-slate-600 text-right select-none w-6">
+                            1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12
+                        </div>
+<div class="flex-1">
+<span class="text-purple-400">function</span> <span class="text-blue-400">fetchData</span>() {<br/>
+                              <span class="text-blue-400">setTimeout</span>(() =&gt; {<br/>
+                                console.<span class="text-blue-400">log</span>(<span class="text-green-400">'Macrotask'</span>);<br/>
+                              }, <span class="text-orange-400">0</span>);<br/>
+                            }<br/><br/>
+<div class="bg-primary/10 -mx-4 px-4 border-l-4 border-primary py-0.5">
+<span class="text-blue-400">fetchData</span>();
+                            </div><br/>
+<span class="text-purple-400">Promise</span>.<span class="text-blue-400">resolve</span>().<span class="text-blue-400">then</span>(() =&gt; {<br/>
+                              console.<span class="text-blue-400">log</span>(<span class="text-microtask">"Microtask"</span>);<br/>
+                            });
+                        </div>
+</div>
+</div>
+<div class="p-4 border-t border-slate-800 bg-slate-900/50">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="size-9 rounded-full bg-primary flex items-center justify-center text-background-dark glow-primary">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+</button>
+<button class="size-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-slate-700">
+<span class="material-symbols-outlined">pause</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Step Mode</span>
+<div class="flex gap-1">
+<button class="px-2 py-1 rounded bg-slate-800 text-[10px] text-slate-400 border border-slate-700">Line</button>
+<button class="px-2 py-1 rounded bg-primary/20 text-[10px] text-primary border border-primary/30">Tick</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-4 overflow-hidden">
+<div class="grid grid-cols-2 gap-4 h-[55%]">
+<div class="glass rounded-xl p-4 flex flex-col border border-slate-800 relative">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">layers</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400">Call Stack</h3>
+</div>
+<div class="flex flex-col-reverse gap-2 flex-1 overflow-y-auto">
+<div class="p-3 bg-slate-800/80 border border-slate-700 rounded-lg text-xs font-mono">Anonymous (global)</div>
+<div class="p-3 bg-primary/20 border border-primary/40 rounded-lg text-xs font-mono text-primary flex justify-between items-center">
+                            fetchData()
+                            <span class="size-2 rounded-full bg-primary animate-ping"></span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="glass rounded-xl p-4 h-1/2 border border-slate-800">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary">memory</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400">Memory Heap</h3>
+</div>
+<div class="grid grid-cols-1 gap-2 overflow-y-auto">
+<div class="p-2 bg-secondary/10 border border-secondary/20 rounded-lg flex justify-between items-center">
+<span class="text-xs font-mono text-secondary">global.context</span>
+<span class="text-[10px] text-slate-500">0x4F2A</span>
+</div>
+</div>
+</div>
+<div class="glass rounded-xl p-4 h-1/2 border border-slate-800 overflow-hidden relative">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-accent">api</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400">Web APIs</h3>
+</div>
+<div class="space-y-2">
+<div class="p-2 bg-accent/10 border border-accent/20 rounded-lg flex items-center justify-between">
+<span class="text-xs font-mono text-accent">setTimeout(..., 0)</span>
+<span class="material-symbols-outlined animate-spin text-accent text-sm">progress_activity</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-[15%] relative flex items-center justify-center">
+<div class="size-32 event-loop-path flex items-center justify-center">
+<div class="size-20 rounded-full border border-primary/20 bg-primary/5 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-2xl animate-[spin_4s_linear_infinite]">sync</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 h-[25%] items-end">
+<div class="glass rounded-xl p-3 border border-slate-800/50 h-full flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-microtask text-sm">priority_high</span>
+<h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Microtask Queue</h3>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-1 flex-1">
+<div class="min-w-[100px] bg-microtask/20 border border-microtask/30 rounded-lg p-2">
+<span class="text-[9px] text-microtask font-bold uppercase block">Promise</span>
+<span class="text-[10px] font-mono truncate">.then()</span>
+</div>
+</div>
+</div>
+<div class="glass rounded-xl p-3 border border-slate-800/50 h-full flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-macrotask text-sm">list</span>
+<h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Macrotask Queue</h3>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-1 flex-1">
+<div class="min-w-[100px] bg-macrotask/20 border border-macrotask/30 rounded-lg p-2">
+<span class="text-[9px] text-macrotask font-bold uppercase block">Timer</span>
+<span class="text-[10px] font-mono truncate">timeout_cb</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-1/4 flex flex-col gap-4 h-full">
+<div class="glass rounded-xl flex-1 flex flex-col border border-slate-800 overflow-hidden">
+<div class="px-4 py-3 bg-slate-900/80 border-b border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">science</span>
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Side-Effects Sandbox</h3>
+</div>
+<span class="size-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+</div>
+<div class="p-3 flex-1 flex flex-col gap-4 overflow-y-auto">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between px-2 py-1 bg-slate-800/40 rounded-t-lg border border-slate-700/50">
+<div class="flex gap-1.5">
+<div class="size-2 rounded-full bg-slate-600"></div>
+<div class="size-2 rounded-full bg-slate-600"></div>
+<div class="size-2 rounded-full bg-slate-600"></div>
+</div>
+<div class="bg-slate-900/80 px-4 py-0.5 rounded text-[9px] font-mono text-slate-500 w-32 truncate">localhost:3000</div>
+<span class="material-symbols-outlined text-slate-500 text-xs">refresh</span>
+</div>
+<div class="h-32 bg-white/5 backdrop-blur-sm border-x border-b border-slate-700/50 rounded-b-lg flex items-center justify-center overflow-hidden relative">
+<div class="text-center">
+<div class="text-[10px] text-slate-500 font-mono mb-2">Rendering Output</div>
+<div class="text-sm font-bold text-white tracking-tight">"Data Received"</div>
+</div>
+<div class="absolute bottom-2 right-2 size-6 rounded-full border border-primary/30 flex items-center justify-center bg-primary/10">
+<span class="material-symbols-outlined text-[10px] text-primary">mouse</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 flex-1">
+<h4 class="text-[10px] font-bold text-slate-500 uppercase px-1">Network Traffic</h4>
+<div class="bg-slate-900/50 border border-slate-800 rounded-lg p-4 relative h-40 overflow-hidden">
+<div class="flex justify-between items-center h-full">
+<div class="flex flex-col items-center gap-2 z-10">
+<div class="size-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-primary glow-primary">
+<span class="material-symbols-outlined">laptop</span>
+</div>
+<span class="text-[9px] font-mono text-slate-500">Client</span>
+</div>
+<div class="absolute inset-x-0 top-1/2 -translate-y-1/2 px-12">
+<div class="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent relative">
+<div class="absolute left-1/3 top-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center">
+<div class="size-3 bg-primary rounded-full glow-primary animate-pulse"></div>
+<span class="text-[8px] font-mono text-primary mt-2">fetch()</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 z-10">
+<div class="size-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-accent">
+<span class="material-symbols-outlined">dns</span>
+</div>
+<span class="text-[9px] font-mono text-slate-500">API Server</span>
+</div>
+</div>
+</div>
+</div>
+<div class="h-20 bg-slate-900/50 border border-slate-800 rounded-lg p-2 font-mono text-[10px] overflow-y-auto">
+<p class="text-slate-500 mb-1">Session Logs:</p>
+<p class="text-primary">&gt; GET /api/data 200 OK</p>
+<p class="text-secondary">&gt; Memory usage: 12.4MB</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="h-28 bg-background-dark border-t border-slate-800/80 px-6 py-4 relative z-50">
+<div class="max-w-screen-2xl mx-auto h-full flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-xl">history_toggle_off</span>
+<h2 class="text-xs font-bold uppercase tracking-widest text-slate-300">Execution Timeline (Time-Travel)</h2>
+<div class="h-4 w-px bg-slate-700"></div>
+<div class="flex gap-4">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-[10px] text-slate-500 font-medium">Main Stack</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-microtask"></span>
+<span class="text-[10px] text-slate-500 font-medium">Microtask</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-macrotask"></span>
+<span class="text-[10px] text-slate-500 font-medium">Macrotask</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 font-mono text-[10px]">
+<span class="text-slate-400">Current Step: <span class="text-primary">14 / 42</span></span>
+<span class="text-slate-400">Timestamp: <span class="text-white">00:02.145s</span></span>
+</div>
+</div>
+<div class="relative flex-1 group">
+<div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-12 bg-slate-900/50 rounded-lg border border-slate-800/50 timeline-track overflow-hidden">
+<div class="absolute inset-0 flex items-center px-4">
+<div class="flex items-center justify-between w-full relative">
+<div class="keyframe-blue size-1.5 rounded-full absolute left-[5%]"></div>
+<div class="keyframe-blue size-1.5 rounded-full absolute left-[10%]"></div>
+<div class="keyframe-blue size-1.5 rounded-full absolute left-[15%]"></div>
+<div class="keyframe-blue size-1.5 rounded-full absolute left-[22%]"></div>
+<div class="keyframe-yellow size-2 rounded-sm rotate-45 absolute left-[35%]"></div>
+<div class="keyframe-yellow size-2 rounded-sm rotate-45 absolute left-[38%]"></div>
+<div class="keyframe-purple size-2 rounded-sm rotate-45 absolute left-[65%]"></div>
+<div class="keyframe-purple size-2 rounded-sm rotate-45 absolute left-[75%]"></div>
+<div class="keyframe-blue size-1.5 rounded-full absolute left-[85%]"></div>
+<div class="keyframe-blue size-1.5 rounded-full absolute left-[92%]"></div>
+</div>
+</div>
+<div class="absolute inset-y-0 left-0 w-[42%] bg-primary/5 border-r border-primary/20 backdrop-blur-[2px]"></div>
+</div>
+<div class="absolute top-0 bottom-0 left-[42%] -translate-x-1/2 flex flex-col items-center cursor-grab active:cursor-grabbing group">
+<div class="w-0.5 h-full bg-primary glow-cyan relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 bg-primary px-2 py-0.5 rounded text-[8px] font-bold text-background-dark whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                            Step 14
+                        </div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-4 bg-primary rounded-full glow-cyan border-4 border-background-dark"></div>
+</div>
+</div>
+<div class="absolute inset-x-0 bottom-[-10px] flex justify-between px-1 opacity-20 pointer-events-none">
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+<div class="h-2 w-px bg-slate-500"></div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

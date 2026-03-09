@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ViSualzzz Landing Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df20d",
+                        "primary-dark": "#0bbd0b",
+                        "background-light": "#f5f8f5",
+                        "background-dark": "#0a0f0a",
+                        "surface-dark": "#111811",
+                        "border-dark": "#283928",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1a2e1a 1px, transparent 1px), linear-gradient(to bottom, #1a2e1a 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", "Noto Sans", sans-serif;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 17, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .neon-glow {
+            box-shadow: 0 0 10px rgba(13, 242, 13, 0.2), 0 0 20px rgba(13, 242, 13, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(13, 242, 13, 0.5);
+        }
+        .card-neon-border {
+            box-shadow: 0 0 5px rgba(13, 242, 13, 0.4), inset 0 0 10px rgba(13, 242, 13, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col">
+<div class="relative flex min-h-screen w-full flex-col">
+<div class="absolute inset-0 z-0 pointer-events-none bg-grid-pattern bg-[size:40px_40px] opacity-20 mask-image-gradient"></div>
+<div class="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-transparent via-background-dark/80 to-background-dark"></div>
+<div class="layout-container flex h-full grow flex-col z-10 relative">
+<div class="flex flex-1 justify-center w-full border-b border-border-dark bg-surface-dark/90 backdrop-blur-md sticky top-0 z-50">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap px-6 py-4">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">terminal</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] font-display">ViSualzzz</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Features</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Docs</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Pricing</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-transparent border border-primary/30 text-primary hover:bg-primary/10 transition-all text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Login</span>
+</button>
+<button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary hover:bg-primary-dark text-background-dark text-sm font-bold leading-normal tracking-[0.015em] transition-all neon-glow">
+<span class="truncate">Launch App</span>
+</button>
+</div>
+</header>
+</div>
+</div>
+<div class="flex flex-1 justify-center">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1 px-4 sm:px-6 lg:px-8">
+<div class="@container py-16 lg:py-24">
+<div class="flex flex-col gap-8 items-center justify-center text-center relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="flex flex-col gap-4 max-w-[800px] z-10">
+<h1 class="text-white text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-[-0.033em] font-display">
+                                    Execution isn't magic. <span class="text-primary text-glow">It's science.</span>
+</h1>
+<h2 class="text-slate-400 text-lg md:text-xl font-normal leading-relaxed font-body max-w-[600px] mx-auto">
+                                    Stop guessing what your runtime is doing. Visualize the stack, heap, and event loop in real-time. And it looks damn good in Dark Mode.
+                                </h2>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 mt-4 z-10 w-full sm:w-auto">
+<button class="flex w-full sm:w-auto min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary-dark text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-all neon-glow shadow-[0_0_20px_rgba(13,242,13,0.4)]">
+<span class="mr-2">Launch Visualizer</span>
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+</button>
+<button class="flex w-full sm:w-auto min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-surface-dark border border-border-dark hover:border-primary/50 text-white text-base font-bold leading-normal tracking-[0.015em] transition-all">
+<span class="mr-2">Read The Docs</span>
+<span class="material-symbols-outlined text-sm">menu_book</span>
+</button>
+</div>
+<div class="w-full mt-12 rounded-xl border border-border-dark bg-background-dark/50 backdrop-blur-sm overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-50"></div>
+<img alt="Cyberpunk abstract digital data stream visualization" class="w-full h-[300px] md:h-[400px] object-cover opacity-60 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700" data-alt="Abstract glowing green data streams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbpvYOdIPsZVvVaQRpIsNFOlbAPVNaq61EX_mr2be6ljf9Dk5qarPSpPpTOUMxTGZOCN8mPD7WPAEtvdH1Hk0x95nkuVqd5UtZvZgs9D2Yo2G9UNVwteVlyt8uObELdyEZjnWz67vEuWK4ZSLYJCby9lM9X3zy4WOFu4DRlsvULqQfkO1JOTsaW3geMSLyGFqJUvo9kfMRHC4cNuqaHG7KXjgK2udkDwBh7pldjoLbNWFD9ZHMKOEA1_b8FYqjqoTgdJpzhznsbTgs"/>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-10 py-16 md:py-24 border-t border-border-dark relative">
+<div class="flex flex-col gap-4 text-center items-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                Toolkit v2.0
+                            </div>
+<h2 class="text-white tracking-tight text-3xl md:text-5xl font-bold font-display">
+                                The Visualzzz Toolkit
+                            </h2>
+<p class="text-slate-400 text-lg font-normal max-w-[600px] font-body">
+                                Tools designed for the modern runtime explorer who needs more than just `console.log`.
+                            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+<div class="group glass-panel rounded-xl border border-primary/40 p-6 flex flex-col gap-4 transition-all duration-300 hover:border-primary hover:shadow-[0_0_30px_rgba(13,242,13,0.3)] hover:-translate-y-1 relative overflow-hidden card-neon-border">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-[28px]">history</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-white text-xl font-bold font-display">Time-Travel Debugging</h3>
+<p class="text-slate-300 text-sm leading-relaxed font-mono">
+                                        Go back in time. Fix your mistakes without the butterfly effect. It's like Ctrl+Z, but for your soul.
+                                    </p>
+</div>
+</div>
+<div class="group glass-panel rounded-xl border border-primary/40 p-6 flex flex-col gap-4 transition-all duration-300 hover:border-primary hover:shadow-[0_0_30px_rgba(13,242,13,0.3)] hover:-translate-y-1 relative overflow-hidden card-neon-border">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-[28px]">memory</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-white text-xl font-bold font-display">Memory Sweeper</h3>
+<p class="text-slate-300 text-sm leading-relaxed font-mono">
+                                        A literal laser for your memory leaks. Watch your detached nodes dissolve into the void.
+                                    </p>
+</div>
+</div>
+<div class="group glass-panel rounded-xl border border-primary/40 p-6 flex flex-col gap-4 transition-all duration-300 hover:border-primary hover:shadow-[0_0_30px_rgba(13,242,13,0.3)] hover:-translate-y-1 relative overflow-hidden card-neon-border">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors duration-300">
+<span class="material-symbols-outlined text-[28px]">bug_report</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-white text-xl font-bold font-display">Side-Effect Sandbox</h3>
+<p class="text-slate-300 text-sm leading-relaxed font-mono">
+                                        What happens in the sandbox, stays in the sandbox. Play with your DOM without the mess.
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+<div class="@container">
+<div class="flex flex-col justify-end gap-6 py-16 md:py-24 border-t border-border-dark">
+<div class="flex flex-col gap-4 text-center items-center">
+<h2 class="text-white tracking-tight text-3xl md:text-4xl font-bold font-display max-w-[720px]">
+                                    Ready to visualize your code?
+                                </h2>
+<p class="text-slate-400 text-base font-normal leading-normal max-w-[600px]">
+                                    Join the thousands of developers who stopped guessing and started seeing the matrix.
+                                </p>
+</div>
+<div class="flex flex-1 justify-center mt-6">
+<div class="flex justify-center relative">
+<div class="absolute inset-0 bg-primary blur-[40px] opacity-20 rounded-full"></div>
+<button class="relative z-10 flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-8 bg-primary hover:bg-primary-dark text-background-dark text-lg font-bold leading-normal tracking-[0.015em] transition-all neon-glow animate-[pulse_3s_ease-in-out_infinite]">
+<span class="mr-2">Launch Visualizer</span>
+<span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="flex flex-col gap-6 px-5 py-10 text-center border-t border-border-dark bg-surface-dark">
+<div class="flex flex-wrap items-center justify-center gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-normal" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-normal" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-normal" href="#">Contact Us</a>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+</svg>
+</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+</div>
+<p class="text-slate-500 text-sm font-normal">© 2023 ViSualzzz Inc. All rights reserved.</p>
+</footer>
+</div>
+</div>
+
+</body></html>

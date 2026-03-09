@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ViSualzzz - Scroll Transition State</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#06b6d4","primary-glow": "#22d3ee","background-light": "#f1f5f9",
+                        "background-dark": "#0F172A","surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+        }
+        .text-glow-white {
+             text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+        .neon-trail {
+            background: linear-gradient(180deg, rgba(6, 182, 212,0) 0%, rgba(6, 182, 212, 0.8) 50%, rgba(6, 182, 212,0) 100%);
+            filter: blur(4px);
+        }
+        .neon-border-glow {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3), inset 0 0 10px rgba(6, 182, 212, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden min-h-screen flex flex-col">
+<div class="fixed inset-0 z-0 pointer-events-none opacity-30" style="background-size: 40px 40px; background-image: linear-gradient(to right, #06b6d4 1px, transparent 1px), linear-gradient(to bottom, #06b6d4 1px, transparent 1px); transform: perspective(1000px) rotateX(10deg) scale(1.1);"></div>
+<header class="fixed top-0 left-0 w-full z-50 glass-panel border-b-0 border-b-primary/20 px-6 py-4 transition-all duration-300">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl text-cyan-400">bug_report</span>
+<h1 class="text-xl font-bold tracking-tight text-white">ViSualzzz</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#">Demo</a>
+<a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#">Pricing</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex bg-primary text-background-dark font-bold text-sm px-5 py-2.5 rounded-full hover:bg-cyan-400 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                Get Started
+            </button>
+<button class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="relative z-10 flex-grow pt-24 pb-20 px-6">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-center min-h-[80vh]">
+<div class="w-full lg:w-1/2 relative group perspective-1000">
+<div class="absolute -left-4 -top-10 bottom-10 w-1 neon-trail opacity-80"></div>
+<div class="relative z-10 rounded-2xl overflow-hidden border border-primary/30 shadow-[0_0_50px_-10px_rgba(6,182,212,0.25)] bg-surface-dark transform transition-transform hover:scale-[1.02] duration-500 neon-border-glow">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-20 pointer-events-none"></div>
+<div class="absolute inset-0 bg-primary/5 z-20 pointer-events-none mix-blend-overlay"></div>
+<div class="relative w-full aspect-[4/3] bg-[#020617] p-4">
+<div class="flex items-center justify-between mb-4 border-b border-white/10 pb-2">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+<div class="w-3 h-3 rounded-full bg-green-500"></div>
+</div>
+<div class="text-xs text-cyan-200/60 font-mono">dashboard.vsz</div>
+</div>
+<div class="grid grid-cols-3 gap-4 h-full pb-6">
+<div class="col-span-1 bg-slate-800/50 rounded-lg p-3 border border-cyan-900/50 flex flex-col gap-2">
+<div class="text-xs text-primary font-mono mb-1">CALL STACK</div>
+<div class="h-8 bg-red-900/30 border-l-2 border-red-500 rounded px-2 flex items-center text-xs text-red-200 font-mono">verifyUser()</div>
+<div class="h-8 bg-slate-700/30 rounded px-2 flex items-center text-xs text-slate-400 font-mono">login()</div>
+<div class="h-8 bg-slate-700/30 rounded px-2 flex items-center text-xs text-slate-400 font-mono">anonymous</div>
+</div>
+<div class="col-span-2 bg-slate-800/50 rounded-lg p-3 border border-cyan-900/50 relative overflow-hidden">
+<div class="text-xs text-primary font-mono mb-2 flex justify-between">
+<span>EVENT LOOP</span>
+<span class="animate-pulse text-primary-glow">● LIVE</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-20">
+<span class="material-symbols-outlined text-8xl text-primary animate-spin" style="animation-duration: 10s;">sync</span>
+</div>
+<div class="flex flex-wrap gap-2 mt-4 relative z-10">
+<div class="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 shadow-[0_0_8px_rgba(6,182,212,0.8)]"></div>
+</div>
+<div class="grid grid-cols-2 gap-2 w-full mt-2">
+<div class="h-16 bg-slate-900/80 rounded border border-cyan-500/30 p-2 shadow-inner">
+<div class="w-2 h-2 rounded-full bg-primary mb-1 shadow-[0_0_5px_rgba(6,182,212,1)]"></div>
+<div class="h-1 w-full bg-slate-700/50 rounded"></div>
+</div>
+<div class="h-16 bg-slate-900/80 rounded border border-cyan-500/30 p-2 shadow-inner">
+<div class="w-2 h-2 rounded-full bg-primary mb-1 shadow-[0_0_5px_rgba(6,182,212,1)]"></div>
+<div class="h-1 w-full bg-slate-700/50 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-6 -right-6 bg-primary text-slate-900 font-bold px-4 py-2 rounded-lg text-sm shadow-[0_0_20px_rgba(6,182,212,0.5)] transform rotate-3 z-30 border border-cyan-300">
+                System State: CRITICAL
+            </div>
+</div>
+<div class="w-full lg:w-1/2 flex flex-col justify-center items-start text-left pl-0 lg:pl-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary-glow text-xs font-bold uppercase tracking-wider mb-6 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_5px_rgba(6,182,212,0.8)]"></span>
+                Reality Check
+            </div>
+<h2 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tighter mb-6 text-white text-glow-white">
+                You don't need a <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-400 to-slate-600 line-through decoration-white/50 decoration-2">debugger.</span>
+</h2>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tighter mb-8 text-primary text-glow">
+                You need an <span class="italic text-cyan-200">exorcist.</span>
+</h2>
+<p class="text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-lg border-l-4 border-cyan-500 pl-6">
+                Meet ViSualzzz. The tool that tears open the fabric of your runtime and shows you exactly where your code went to hell.
+            </p>
+<div class="flex flex-wrap gap-4">
+<button class="group flex items-center justify-center gap-2 bg-primary text-background-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-slate-900 hover:scale-105 transition-all duration-200 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)]">
+<span>See the Horror</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-lg text-white border border-cyan-500/30 hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-200">
+<span class="material-symbols-outlined">play_circle</span>
+<span>Watch Demo</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-20 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-4 hover:border-cyan-400/60 transition-colors group cursor-default hover:shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+<div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors shadow-inner">
+<span class="material-symbols-outlined">mist</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-2">Real-time Exorcism</h3>
+<p class="text-slate-400 text-sm">Watch the bugs leave your body as you see the event loop in real-time.</p>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-4 hover:border-cyan-400/60 transition-colors group cursor-default hover:shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+<div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors shadow-inner">
+<span class="material-symbols-outlined">skull</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-2">Stack Trace Seance</h3>
+<p class="text-slate-400 text-sm">Summon the spirits of functions past to see where it all went wrong.</p>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-4 hover:border-cyan-400/60 transition-colors group cursor-default hover:shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+<div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors shadow-inner">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-2">Memory Leak Poltergeists</h3>
+<p class="text-slate-400 text-sm">Detect the invisible forces eating your RAM before they crash your browser.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>
