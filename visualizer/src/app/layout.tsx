@@ -29,8 +29,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <GoogleAnalytics gaId="G-1JS0719YBT" />
       </body>
-      <GoogleAnalytics gaId="G-1JS0719YBT" />
     </html>
   );
 }
