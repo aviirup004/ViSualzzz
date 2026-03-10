@@ -101,19 +101,21 @@ export default function CodeEditor({ readOnly = false }: CodeEditorProps) {
         play();
     };
 
-    // Optionally set up custom theme if monaco is loaded
-    if (monaco) {
-        monaco.editor.defineTheme('visualizerTheme', {
-            base: 'vs-dark',
-            inherit: true,
-            rules: [],
-            colors: {
-                'editor.background': '#1e293b00', // transparent so our background shows through
-                'editor.lineHighlightBackground': '#0dccf21a'
-            }
-        });
-        monaco.editor.setTheme('visualizerTheme');
-    }
+    // Side-effects should never run on the render thread to avoid Next.js Strict Mode hydration crashes!
+    useEffect(() => {
+        if (monaco) {
+            monaco.editor.defineTheme('visualizerTheme', {
+                base: 'vs-dark',
+                inherit: true,
+                rules: [],
+                colors: {
+                    'editor.background': '#1e293b00', // transparent so our background shows through
+                    'editor.lineHighlightBackground': '#0dccf21a'
+                }
+            });
+            monaco.editor.setTheme('visualizerTheme');
+        }
+    }, [monaco]);
 
     return (
         <div className="w-[45%] flex flex-col gap-4 h-full min-w-[350px]">

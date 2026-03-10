@@ -13,17 +13,24 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase (Singleton pattern for Next.js)
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-
-// Initialize Analytics, but only on the client side
+// Initialize Firebase safely (Singleton pattern for Next.js)
+let app;
 let analytics;
-if (typeof window !== "undefined") {
-    analytics = getAnalytics(app);
-}
+let db: any;
 
-// Initialize Firestore
-const db = getFirestore(app);
+try {
+    app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+
+    // Initialize Analytics, but only on the client side
+    if (typeof window !== "undefined") {
+        analytics = getAnalytics(app);
+    }
+
+    // Initialize Firestore
+    db = getFirestore(app);
+} catch (error) {
+    console.error("Firebase initialization error (Check NEXT_PUBLIC_ env variables!):", error);
+}
 
 export { app, analytics, db };
 
