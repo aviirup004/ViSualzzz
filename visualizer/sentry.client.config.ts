@@ -3,9 +3,9 @@ import * as Sentry from "@sentry/nextjs";
 Sentry.init({
     dsn: "YOUR_SENTRY_DSN_HERE",
 
-    // Replay may only be enabled for the client-side
+    // Commented out to prevent SessionReplay from crashing the client on a non-existent DSN
     integrations: [
-        Sentry.replayIntegration(),
+        // Sentry.replayIntegration(),
     ],
 
     // Set tracesSampleRate to 1.0 to capture 100%
