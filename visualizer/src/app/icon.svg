@@ -1,0 +1,9 @@
+<svg aria-label="ViSualzzz Logo" class="w-full h-full animate-glow-pulse" fill="none" role="img" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- The geometric "V" composed of two intersecting neon-cyan lines -->
+<!-- Line 1: Left side of V -->
+<line class="glow-cyan" stroke="#22D3EE" stroke-linecap="round" stroke-width="1.5" x1="25" x2="50" y1="20" y2="80"></line>
+<!-- Line 2: Right side of V -->
+<line class="glow-cyan" stroke="#22D3EE" stroke-linecap="round" stroke-width="1.5" x1="75" x2="50" y1="20" y2="80"></line>
+<!-- The thin violet circular ring at the base representing the event loop -->
+<circle class="glow-violet" cx="50" cy="80" data-purpose="event-loop-symbol" r="12" stroke="#A855F7" stroke-width="0.75"></circle>
+</svg>
