@@ -7,7 +7,6 @@ import { Terminal, Save, Layers, MemoryStick, Cpu, AlertCircle, List, ArrowUpRig
 import CodeEditor from "@/components/CodeEditor";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEngineStore } from "@/store/useEngineStore";
-import { getSnippetSnapshot } from "@/lib/firebase";
 
 type Environment = "browser" | "node";
 
@@ -27,17 +26,21 @@ export default function SharedSnapshotPage() {
         async function fetchSnapshot() {
             if (!id) return;
             try {
-                const snapshot = await getSnippetSnapshot(id);
-                if (snapshot && isMounted) {
-                    setCodeSnippet(snapshot.codeSnippet || "");
-                    setEnv((snapshot.environment as Environment) || "browser");
+                // Decode serverless snapshot from Base64URL string in the ID
+                const decodedBase64 = id.replace(/-/g, '+').replace(/_/g, '/');
+                const paddedBase64 = decodedBase64.padEnd(decodedBase64.length + (4 - decodedBase64.length % 4) % 4, '=');
+                const payload = JSON.parse(decodeURIComponent(atob(paddedBase64)));
+
+                if (payload && isMounted) {
+                    setCodeSnippet(payload.c || "");
+                    setEnv((payload.e as Environment) || "browser");
                     setLoading(false);
                 } else if (isMounted) {
                     setNotFound(true);
                     setLoading(false);
                 }
             } catch (err) {
-                console.error("Error fetching snapshot", err);
+                console.error("Error decoding serverless snapshot", err);
                 if (isMounted) {
                     setNotFound(true);
                     setLoading(false);

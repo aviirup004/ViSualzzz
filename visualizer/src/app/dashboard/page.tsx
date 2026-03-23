@@ -19,31 +19,21 @@ export default function DashboardPage() {
     const { codeSnippet, environment: env, setEnvironment: setEnv, callStack, webApis, microtaskQueue, macrotaskQueue, nextTickQueue, checkQueue, consoleOutput } = useEngineStore();
 
     const handleSaveSnapshot = async () => {
-        // Rate Limiting: Max 5 snippets per minute
-        const now = Date.now();
-        const timestampsToken = localStorage.getItem('visualzzz_share_timestamps');
-        let timestamps: number[] = timestampsToken ? JSON.parse(timestampsToken) : [];
-
-        timestamps = timestamps.filter(t => now - t < 60000); // Keep only timestamps from the last 60 seconds
-
-        if (timestamps.length >= 5) {
-            alert("You're sharing too fast! Please wait a minute before creating another link.");
-            return;
-        }
-
-        timestamps.push(now);
-        localStorage.setItem('visualzzz_share_timestamps', JSON.stringify(timestamps));
-
         setIsSaving(true);
         try {
-            const memoryData = { globalContext: "0x4F2A" }; // Mocked memory data based on UI
-            const docId = await saveSnippetSnapshot(codeSnippet, env, memoryData);
-            const url = `${window.location.origin}/demo/${docId}`;
+            // Serverless Snippet Sharing! Compress to base64url so Firebase is unneeded.
+            const payload = JSON.stringify({ c: codeSnippet, e: env });
+            const encoded = btoa(encodeURIComponent(payload))
+                .replace(/\+/g, '-')
+                .replace(/\//g, '_')
+                .replace(/=/g, '');
+            
+            const url = `${window.location.origin}/share/${encoded}`;
             setShareUrl(url);
             setIsShareModalOpen(true);
         } catch (error) {
-            console.error("Failed to save snapshot", error);
-            alert("Failed to save snapshot");
+            console.error("Failed to generate share URL", error);
+            alert("Failed to create snapshot link. The code snippet may be too large.");
         } finally {
             setIsSaving(false);
         }
